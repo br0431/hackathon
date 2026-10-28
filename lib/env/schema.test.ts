@@ -32,6 +32,12 @@ describe("validateEnv", () => {
     );
   });
 
+  it("rechaza la URL de la API REST en lugar de la del proyecto", () => {
+    expect(() => validateEnv({ ...valid, NEXT_PUBLIC_SUPABASE_URL: "https://abcdefgh.supabase.co/rest/v1/" })).toThrow(
+      /Quita «\/rest\/v1\/»/,
+    );
+  });
+
   it("rechaza BILLING_PROVIDER=stripe en la v1", () => {
     expect(() => validateEnv({ ...valid, BILLING_PROVIDER: "stripe" })).toThrow(/pagos son simulados/);
   });

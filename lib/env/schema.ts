@@ -22,7 +22,11 @@ const supabasePublicKey = z
   });
 
 export const clientSchema = z.object({
-  NEXT_PUBLIC_SUPABASE_URL: z.url({ error: "Debe ser la URL del proyecto de Supabase (https://….supabase.co)." }),
+  NEXT_PUBLIC_SUPABASE_URL: z
+    .url({ error: "Debe ser la URL del proyecto de Supabase (https://….supabase.co)." })
+    .refine((value) => !/\/(rest|auth)\/v1/.test(value), {
+      error: "Quita «/rest/v1/» del final: va solo https://….supabase.co (Project Settings → Data API → Project URL).",
+    }),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: supabasePublicKey,
   NEXT_PUBLIC_SITE_URL: z.url({ error: "Debe ser la URL pública de la app (por ejemplo, http://localhost:3000)." }),
 });
