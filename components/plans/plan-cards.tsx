@@ -40,9 +40,16 @@ export function PlanCards() {
                 <Link href="/diagnostico">Empezar gratis</Link>
               </Button>
             ) : STRIPE_TEST_PAYMENT_LINKS[plan.id] ? (
-              <Button asChild variant={plan.highlighted ? "default" : "secondary"}>
-                <a href={STRIPE_TEST_PAYMENT_LINKS[plan.id]}>Elegir {plan.name} · pagar con Stripe (prueba)</a>
-              </Button>
+              <div className="flex flex-col gap-1.5">
+                <Button
+                  asChild
+                  variant={plan.highlighted ? "default" : "secondary"}
+                  className="w-full text-center whitespace-normal"
+                >
+                  <a href={STRIPE_TEST_PAYMENT_LINKS[plan.id]}>Pagar con Stripe</a>
+                </Button>
+                <p className="text-center text-xs font-bold">Modo de prueba · no se cobra nada</p>
+              </div>
             ) : (
               <p className="rounded-full border-2 border-dashed border-ink px-4 py-2.5 text-center text-sm font-bold">
                 Pago con Stripe: próximamente
