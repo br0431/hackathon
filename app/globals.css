@@ -92,6 +92,35 @@
   }
 }
 
+/* Animaciones de marca (valores de docs/design-reference). */
+@keyframes alza-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-22px);
+  }
+}
+@keyframes alza-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.alza-ball {
+  animation: alza-bounce 2.4s ease-in-out infinite;
+}
+.alza-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: alza-pulse 1.6s ease-out infinite;
+}
+
 /* Movimiento reducido: ninguna animación CSS se ejecuta y se muestra el estado final. */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -101,5 +130,9 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .alza-ball,
+  .alza-pulse {
+    animation: none !important;
   }
 }
