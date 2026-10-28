@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Alza - Diagnóstico</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+body { margin: 0; background: #FFF8EE; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; cursor: pointer; }
+input[type=range] { width: 100%; height: 32px; accent-color: #6C3BFF; cursor: pointer; margin: 0; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #1B1340; outline-offset: 3px; }
+@keyframes alza-step-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes alza-pulse-soft {
+  0% { box-shadow: 0 0 0 0 rgba(108, 59, 255, 0.45); }
+  100% { box-shadow: 0 0 0 14px rgba(108, 59, 255, 0); }
+}
+.alza-step { animation: alza-step-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.alza-live { animation: alza-pulse-soft 1.8s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .alza-step, .alza-live { animation: none; }
+}
+</style>
+</helmet>
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #1B1340; background: #FFF8EE; width: 100%; min-height: 1200px">
+
+<!-- CABECERA -->
+<header style="max-width: 1200px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 40px) 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+  <a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px">
+    <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="16.5" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle><path d="M12 23 L19 13 L26 23" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em">Alza</span>
+  </a>
+  <div style="display: flex; align-items: center; gap: 20px; font-size: 16px; font-weight: 500">
+    <span style="color: #5B5478">Paso {{stepNumber}} de 4</span>
+    <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 2px solid #1B1340; font-weight: 700">Salir</a>
+  </div>
+</header>
+
+<!-- STEPPER -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px clamp(20px, 4vw, 40px) 8px">
+  <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center">
+    <sc-for list="{{stepper}}" as="s" hint-placeholder-count="4">
+      <div style="display: inline-flex; align-items: center; gap: 12px; min-height: 44px">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; font-weight: 800; font-size: 16px; border: 2px solid #1B1340; background: {{s.bg}}; color: {{s.fg}}; transition: background 0.3s, color 0.3s">
+          <sc-if value="{{s.done}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 L10 17.5 L19 7" fill="none" stroke="#1B1340" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+          <sc-if value="{{s.pending}}" hint-placeholder-val="{{ true }}">{{s.n}}</sc-if>
+        </span>
+        <span style="font-weight: 700; font-size: 17px; color: {{s.label}}">{{s.name}}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top: 16px; height: 12px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; overflow: hidden">
+    <div style="height: 100%; width: {{progress}}%; background: #6C3BFF; border-right: 2px solid #1B1340; box-sizing: border-box; transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)"></div>
+  </div>
+</div>
+
+<!-- CUERPO -->
+<main style="max-width: 1200px; margin: 0 auto; padding: 32px clamp(20px, 4vw, 40px) 96px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+  <!-- FORMULARIO -->
+  <section style="flex: 1.5 1 560px; min-width: 0; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 8px 8px 0 #1B1340; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 32px">
+
+    <!-- Paso 1 -->
+    <sc-if value="{{isStep0}}" hint-placeholder-val="{{ true }}">
+      <div class="alza-step" style="display: flex; flex-direction: column; gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.025em">Cuéntanos cómo eres</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5B5478">Estos datos nos ayudan a ajustar la lectura de tu perfil a tu posición y tu cuerpo.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><label for="edad" style="font-weight: 700; font-size: 18px">Edad</label><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.02em">{{age}} <span style="font-size: 20px; font-weight: 500; color: #5B5478">años</span></span></div>
+          <input id="edad" type="range" min="14" max="60" step="1" value="{{age}}" onChange="{{onAge}}">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><label for="altura" style="font-weight: 700; font-size: 18px">Altura</label><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.02em">{{height}} <span style="font-size: 20px; font-weight: 500; color: #5B5478">cm</span></span></div>
+          <input id="altura" type="range" min="130" max="230" step="1" value="{{height}}" onChange="{{onHeight}}">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><label for="peso" style="font-weight: 700; font-size: 18px">Peso</label><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -0.02em">{{weight}} <span style="font-size: 20px; font-weight: 500; color: #5B5478">kg</span></span></div>
+          <input id="peso" type="range" min="35" max="150" step="1" value="{{weight}}" onChange="{{onWeight}}">
+          <p style="margin: 0; font-size: 15px; color: #5B5478">Solo lo usamos como contexto para dimensionar las cargas. Nunca lo juzgamos.</p>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- Paso 2 -->
+    <sc-if value="{{isStep1}}" hint-placeholder-val="{{ false }}">
+      <div class="alza-step" style="display: flex; flex-direction: column; gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.025em">Tu salto y tu posición</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5B5478">Mueve la regla hasta tu salto vertical y elige dónde juegas.</p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+          <div style="flex: 0 0 auto; display: flex; gap: 20px; align-items: stretch">
+            <div style="position: relative; width: 72px; height: 300px">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 72px; border-radius: 999px; background: #EFE9FF; border: 2px solid #1B1340; overflow: hidden">
+                <div style="position: absolute; left: 0; right: 0; bottom: 0; height: {{jumpPct}}%; background: #E83E8C; border-top: 2px solid #1B1340; transition: height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)"></div>
+              </div>
+              <div aria-hidden="true" style="position: absolute; left: 50%; bottom: {{jumpPct}}%; width: 44px; height: 44px; margin-left: -22px; margin-bottom: -22px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; display: flex; align-items: center; justify-content: center; transition: bottom 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)">
+                <svg width="26" height="26" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="#FFFFFF" stroke="#1B1340" stroke-width="5"></circle><path d="M8 34 C 24 46 44 44 54 6" fill="none" stroke="#1B1340" stroke-width="5" stroke-linecap="round"></path><path d="M13 65 C 30 53 52 55 71 65" fill="none" stroke="#FF5A36" stroke-width="5" stroke-linecap="round"></path></svg>
+              </div>
+            </div>
+            <div aria-hidden="true" style="position: relative; width: 44px; height: 300px; font-size: 14px; font-weight: 700; color: #5B5478">
+              <span style="position: absolute; bottom: 0%; margin-bottom: -9px">10</span>
+              <span style="position: absolute; bottom: 20%; margin-bottom: -9px">30</span>
+              <span style="position: absolute; bottom: 40%; margin-bottom: -9px">50</span>
+              <span style="position: absolute; bottom: 60%; margin-bottom: -9px">70</span>
+              <span style="position: absolute; bottom: 80%; margin-bottom: -9px">90</span>
+            </div>
+          </div>
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+            <label for="salto" style="font-weight: 700; font-size: 18px">Salto vertical</label>
+            <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 72px; line-height: 1; letter-spacing: -0.03em">{{jump}} <span style="font-size: 26px; font-weight: 500; color: #5B5478">cm</span></span>
+            <input id="salto" type="range" min="10" max="110" step="1" value="{{jump}}" onChange="{{onJump}}">
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5B5478">Cómo medirlo: de pie junto a una pared, marca hasta dónde llegas con el brazo estirado. Salta y marca lo más alto que alcances. La diferencia es tu salto.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 18px">Posición</span>
+          <div role="group" aria-label="Posición de juego" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+            <sc-for list="{{positions}}" as="p" hint-placeholder-count="6">
+              <button type="button" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" style="text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: 18px; border: 2px solid #1B1340; background: {{p.bg}}; box-shadow: {{p.sh}}; transform: {{p.tf}}; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; font-size: 16px">
+                <span style="font-weight: 700; font-size: 18px">{{p.name}}</span>
+                <span style="font-size: 14px; line-height: 1.35">{{p.desc}}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- Paso 3 -->
+    <sc-if value="{{isStep2}}" hint-placeholder-val="{{ false }}">
+      <div class="alza-step" style="display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.025em">Valora tus habilidades</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5B5478">Del 1 al 5. Sé honesto: un 5 es la referencia de tu equipo, no un buen día.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <sc-for list="{{skillRows}}" as="s" hint-placeholder-count="6">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 16px 20px; border-radius: 20px; background: #FFF8EE; border: 2px solid #1B1340">
+              <div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                <span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px"><span style="width: 14px; height: 14px; border-radius: 999px; border: 2px solid #1B1340; background: {{s.color}}"></span>{{s.name}}</span>
+                <span style="font-size: 14px; color: #5B5478">{{s.hint}}</span>
+              </div>
+              <div role="group" aria-label="{{s.aria}}" style="display: flex; gap: 8px">
+                <sc-for list="{{s.levels}}" as="l" hint-placeholder-count="5">
+                  <button type="button" onClick="{{l.pick}}" aria-pressed="{{l.pressed}}" style="width: 48px; height: 48px; border-radius: 14px; border: 2px solid {{l.bd}}; background: {{l.bg}}; color: #1B1340; font-weight: 800; font-size: 20px; box-shadow: {{l.sh}}; transform: {{l.tf}}; transition: background 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s">{{l.n}}</button>
+                </sc-for>
+              </div>
+              <span style="flex: 1 1 100%; font-size: 15px; font-weight: 500; color: #5B5478">{{s.levelText}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- Paso 4 -->
+    <sc-if value="{{isStep3}}" hint-placeholder-val="{{ false }}">
+      <div class="alza-step" style="display: flex; flex-direction: column; gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.025em">¿Cuál es tu rumbo?</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5B5478">Con los mismos datos, la recomendación cambia según lo que quieras conseguir.</p>
+        </div>
+        <div role="group" aria-label="Rumbo" style="display: flex; flex-direction: column; gap: 12px">
+          <sc-for list="{{goals}}" as="g" hint-placeholder-count="3">
+            <button type="button" onClick="{{g.pick}}" aria-pressed="{{g.pressed}}" style="text-align: left; display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 20px; border: 2px solid #1B1340; background: {{g.bg}}; box-shadow: {{g.sh}}; transform: {{g.tf}}; transition: background 0.2s, transform 0.2s, box-shadow 0.2s">
+              <span style="flex: none; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #1B1340; background: {{g.color}}; display: inline-flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 24px">{{g.mark}}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-weight: 700; font-size: 20px">{{g.name}}</span><span style="font-size: 16px; line-height: 1.4">{{g.desc}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 18px">¿Cuántos días a la semana puedes entrenar?</span>
+          <div role="group" aria-label="Días de entrenamiento por semana" style="display: flex; flex-wrap: wrap; gap: 10px">
+            <sc-for list="{{daysOptions}}" as="d" hint-placeholder-count="6">
+              <button type="button" onClick="{{d.pick}}" aria-pressed="{{d.pressed}}" style="width: 52px; height: 52px; border-radius: 16px; border: 2px solid {{d.bd}}; background: {{d.bg}}; color: {{d.fg}}; font-weight: 800; font-size: 20px; box-shadow: {{d.sh}}; transform: {{d.tf}}; transition: background 0.2s, transform 0.2s, box-shadow 0.2s">{{d.n}}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- NAVEGACION -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 2px solid #EFE9FF">
+      <sc-if value="{{canBack}}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{goBack}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-weight: 700; font-size: 17px">Atrás</button>
+      </sc-if>
+      <sc-if value="{{cannotBack}}" hint-placeholder-val="{{ false }}"><span></span></sc-if>
+      <sc-if value="{{canNext}}" hint-placeholder-val="{{ true }}">
+        <button type="button" onClick="{{goNext}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 36px; border-radius: 999px; background: #6C3BFF; color: #FFFFFF; border: 2px solid #1B1340; box-shadow: 5px 5px 0 #1B1340; font-weight: 700; font-size: 18px">Continuar</button>
+      </sc-if>
+      <sc-if value="{{isLast}}" hint-placeholder-val="{{ false }}">
+        <a href="Resultados.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 36px; border-radius: 999px; background: #FFC933; color: #1B1340; border: 2px solid #1B1340; box-shadow: 5px 5px 0 #1B1340; font-weight: 700; font-size: 18px">Ver mi perfil</a>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- RADAR EN VIVO -->
+  <aside style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 8px 8px 0 #1B1340; padding: 24px clamp(16px, 2.4vw, 28px) 28px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+      <span style="font-weight: 700; font-size: 18px">Tu perfil en directo</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #5B5478"><span class="alza-live" style="width: 10px; height: 10px; border-radius: 999px; background: #6C3BFF"></span>Se actualiza al responder</span>
+    </div>
+    <svg viewBox="-40 0 480 372" role="img" aria-label="Radar con tus siete ejes, actualizado con tus respuestas" style="width: 100%; height: auto; display: block">
+      <g fill="none" stroke="#D9D3F5" stroke-width="1.5">
+        <polygon points="200,70 301.63,118.94 326.74,228.93 256.41,317.13 143.59,317.13 73.26,228.93 98.37,118.94"></polygon>
+        <polygon points="200,102.5 276.22,139.21 295.06,221.7 242.31,287.85 157.69,287.85 104.94,221.7 123.78,139.21"></polygon>
+        <polygon points="200,135 250.82,159.47 263.37,214.46 228.21,258.57 171.79,258.57 136.63,214.46 149.18,159.47"></polygon>
+        <polygon points="200,167.5 225.41,179.74 231.69,207.23 214.1,229.28 185.9,229.28 168.31,207.23 174.59,179.74"></polygon>
+        <line x1="200" y1="200" x2="200" y2="70"></line>
+        <line x1="200" y1="200" x2="301.63" y2="118.94"></line>
+        <line x1="200" y1="200" x2="326.74" y2="228.93"></line>
+        <line x1="200" y1="200" x2="256.41" y2="317.13"></line>
+        <line x1="200" y1="200" x2="143.59" y2="317.13"></line>
+        <line x1="200" y1="200" x2="73.26" y2="228.93"></line>
+        <line x1="200" y1="200" x2="98.37" y2="118.94"></line>
+      </g>
+      <polygon points="{{poly}}" fill="#6C3BFF" fill-opacity="0.22" stroke="#6C3BFF" stroke-width="3.5" stroke-linejoin="round"></polygon>
+      <circle cx="{{x0}}" cy="{{y0}}" r="9" fill="#FF5A36" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x1}}" cy="{{y1}}" r="9" fill="#2F7BFF" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x2}}" cy="{{y2}}" r="9" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x3}}" cy="{{y3}}" r="9" fill="#35C76B" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x4}}" cy="{{y4}}" r="9" fill="#18D4C0" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x5}}" cy="{{y5}}" r="9" fill="#6C3BFF" stroke="#1B1340" stroke-width="2.5"></circle>
+      <circle cx="{{x6}}" cy="{{y6}}" r="9" fill="#E83E8C" stroke="#1B1340" stroke-width="2.5"></circle>
+      <g font-family="DM Sans, system-ui, sans-serif" font-size="17" font-weight="700" fill="#1B1340">
+        <text x="200" y="48" text-anchor="middle">Remate</text>
+        <text x="324" y="110" text-anchor="start">Bloqueo</text>
+        <text x="352" y="240" text-anchor="start">Saque</text>
+        <text x="266" y="354" text-anchor="middle">Defensa</text>
+        <text x="134" y="354" text-anchor="middle">Recepción</text>
+        <text x="48" y="240" text-anchor="end">Colocación</text>
+        <text x="76" y="110" text-anchor="end">Salto</text>
+      </g>
+    </svg>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5B5478">Un 1 queda en el centro y un 5 en el borde. El salto se compara con una referencia para tu edad y posición.</p>
+  </aside>
+</main>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 0, age: 24, height: 186, weight: 78, jump: 55, pos: 'receptor',
+      skills: { saque: 3, recepcion: 3, colocacion: 3, remate: 3, bloqueo: 3, defensa: 3 },
+      goal: 'debil', days: 3,
+      disp: [0, 0, 0, 0, 0, 0, 0]
+    };
+    this.raf = 0;
+  }
+
+  componentDidMount() {
+    this.animateTo(this.targetOf(this.state.skills, this.state.jump));
+  }
+
+  componentWillUnmount() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+
+  targetOf(s, jump) {
+    const jp = Math.max(0, Math.min(100, (jump - 20) / 70 * 100));
+    return [(s.remate - 1) * 25, (s.bloqueo - 1) * 25, (s.saque - 1) * 25, (s.defensa - 1) * 25, (s.recepcion - 1) * 25, (s.colocacion - 1) * 25, jp];
+  }
+
+  animateTo(target) {
+    if (this.raf) cancelAnimationFrame(this.raf);
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { this.setState({ disp: target }); return; }
+    const from = this.state.disp.slice();
+    const t0 = performance.now();
+    const dur = 650;
+    const tick = (now) => {
+      const x = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - x, 3);
+      this.setState({ disp: from.map((v, i) => v + (target[i] - v) * e) });
+      if (x < 1) this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const COS = [0, 0.7818, 0.9749, 0.4339, -0.4339, -0.9749, -0.7818];
+    const SIN = [-1, -0.6235, 0.2225, 0.9010, 0.9010, 0.2225, -0.6235];
+    const out = {};
+    const pts = st.disp.map((v, i) => [200 + 1.3 * v * COS[i], 200 + 1.3 * v * SIN[i]]);
+    out.poly = pts.map((p) => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+    pts.forEach((p, i) => { out['x' + i] = p[0].toFixed(1); out['y' + i] = p[1].toFixed(1); });
+
+    out.age = st.age; out.height = st.height; out.weight = st.weight; out.jump = st.jump;
+    out.jumpPct = Math.round((st.jump - 10) / 100 * 100);
+    out.onAge = (e) => this.setState({ age: Number(e.target.value) });
+    out.onHeight = (e) => this.setState({ height: Number(e.target.value) });
+    out.onWeight = (e) => this.setState({ weight: Number(e.target.value) });
+    out.onJump = (e) => {
+      const v = Number(e.target.value);
+      this.setState({ jump: v });
+      this.animateTo(this.targetOf(st.skills, v));
+    };
+
+    out.stepNumber = st.step + 1;
+    out.progress = (st.step + 1) * 25;
+    out.isStep0 = st.step === 0; out.isStep1 = st.step === 1; out.isStep2 = st.step === 2; out.isStep3 = st.step === 3;
+    out.canBack = st.step > 0; out.cannotBack = st.step === 0;
+    out.canNext = st.step < 3; out.isLast = st.step === 3;
+    out.goBack = () => this.setState({ step: Math.max(0, st.step - 1) });
+    out.goNext = () => this.setState({ step: Math.min(3, st.step + 1) });
+
+    const names = ['Tú', 'Tu salto', 'Habilidades', 'Objetivo'];
+    out.stepper = names.map((name, i) => {
+      const done = i < st.step; const cur = i === st.step;
+      return {
+        n: i + 1, name, done, pending: !done,
+        bg: done ? '#18D4C0' : (cur ? '#6C3BFF' : '#FFFFFF'),
+        fg: cur ? '#FFFFFF' : '#1B1340',
+        label: cur ? '#1B1340' : '#5B5478'
+      };
+    });
+
+    const POS = [
+      { key: 'colocador', name: 'Colocador', desc: 'Dirige el ataque del equipo' },
+      { key: 'opuesto', name: 'Opuesto', desc: 'Remata desde la zona 2' },
+      { key: 'receptor', name: 'Receptor-atacante', desc: 'Recibe y remata' },
+      { key: 'central', name: 'Central', desc: 'Bloquea y remata rápido' },
+      { key: 'libero', name: 'Líbero', desc: 'Especialista en recepción y defensa' },
+      { key: 'nose', name: 'Aún no lo sé', desc: 'Sin posición fija todavía' }
+    ];
+    out.positions = POS.map((p) => {
+      const on = st.pos === p.key;
+      return { name: p.name, desc: p.desc, pressed: on, bg: on ? '#FFC933' : '#FFFFFF', sh: on ? '4px 4px 0 #1B1340' : 'none', tf: on ? 'translateY(-2px)' : 'translateY(0)', pick: () => this.setState({ pos: p.key }) };
+    });
+
+    const SK = [
+      { key: 'saque', name: 'Saque', color: '#FFC933', hint: 'Potencia y precisión al servir' },
+      { key: 'recepcion', name: 'Recepción', color: '#18D4C0', hint: 'Controlar el primer toque' },
+      { key: 'colocacion', name: 'Colocación', color: '#6C3BFF', hint: 'Dar buenos balones al atacante' },
+      { key: 'remate', name: 'Remate', color: '#FF5A36', hint: 'Golpear con fuerza y dirección' },
+      { key: 'bloqueo', name: 'Bloqueo', color: '#2F7BFF', hint: 'Cerrar la red al rival' },
+      { key: 'defensa', name: 'Defensa', color: '#35C76B', hint: 'Levantar balones difíciles' }
+    ];
+    const LV = ['Estoy empezando', 'Me sale a veces', 'Me sale con fiabilidad entrenando', 'Me sale en partido, bajo presión', 'Es mi referencia en el equipo'];
+    out.skillRows = SK.map((s) => {
+      const cur = st.skills[s.key];
+      return {
+        name: s.name, color: s.color, hint: s.hint, aria: 'Nota de ' + s.name,
+        levelText: cur + ' de 5: ' + LV[cur - 1],
+        levels: [1, 2, 3, 4, 5].map((n) => {
+          const on = n === cur;
+          return {
+            n, pressed: on,
+            bg: on ? s.color : '#FFFFFF', bd: '#1B1340',
+            sh: on ? '3px 3px 0 #1B1340' : 'none', tf: on ? 'translateY(-2px)' : 'translateY(0)',
+            pick: () => {
+              const skills = Object.assign({}, st.skills, { [s.key]: n });
+              this.setState({ skills });
+              this.animateTo(this.targetOf(skills, st.jump));
+            }
+          };
+        })
+      };
+    });
+
+    const GO = [
+      { key: 'debil', name: 'Reforzar lo débil', desc: 'Prioriza las dos o tres áreas donde más margen tienes.', color: '#FF5A36', mark: '+' },
+      { key: 'fuerte', name: 'Potenciar lo fuerte', desc: 'Convierte tu mejor habilidad en tu arma principal.', color: '#FFC933', mark: '★' },
+      { key: 'equilibrado', name: 'Equilibrado', desc: 'Mejora lo que te frena sin descuidar lo que te distingue.', color: '#18D4C0', mark: '=' }
+    ];
+    out.goals = GO.map((g) => {
+      const on = st.goal === g.key;
+      return { name: g.name, desc: g.desc, color: g.color, mark: g.mark, pressed: on, bg: on ? '#EFE9FF' : '#FFFFFF', sh: on ? '5px 5px 0 #1B1340' : 'none', tf: on ? 'translateY(-2px)' : 'translateY(0)', pick: () => this.setState({ goal: g.key }) };
+    });
+    out.daysOptions = [1, 2, 3, 4, 5, 6].map((n) => {
+      const on = st.days === n;
+      return { n, pressed: on, bg: on ? '#6C3BFF' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1340', bd: '#1B1340', sh: on ? '4px 4px 0 #1B1340' : 'none', tf: on ? 'translateY(-2px)' : 'translateY(0)', pick: () => this.setState({ days: n }) };
+    });
+    return out;
+  }
+}
+</script>
+</body>
+</html>

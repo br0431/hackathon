@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Alza - Ficha de ejercicio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+body { margin: 0; background: #FFF8EE; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; cursor: pointer; }
+input[type=range] { width: 100%; height: 28px; accent-color: #6C3BFF; cursor: pointer; margin: 0; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #1B1340; outline-offset: 3px; }
+@keyframes alza-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.alza-rise { animation: alza-rise 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .alza-rise { animation: none; }
+}
+</style>
+</helmet>
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #1B1340; background: #FFF8EE; width: 100%">
+
+<!-- BARRA DE LA APP -->
+<header style="background: #FFFFFF; border-bottom: 2px solid #1B1340">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 12px clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px">
+      <a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px">
+        <svg width="34" height="34" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="16.5" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle><path d="M12 23 L19 13 L26 23" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Alza</span>
+      </a>
+      <nav style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 16px; font-weight: 500">
+        <a href="#panel" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px">Panel</a>
+        <a href="#ejercicios" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; background: #EFE9FF; border: 2px solid #1B1340; font-weight: 700">Ejercicios</a>
+        <a href="#progreso" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px">Progreso</a>
+        <a href="#sesiones" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px">Sesiones</a>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: #6C3BFF; color: #FFFFFF; border: 2px solid #1B1340; font-size: 14px; font-weight: 700">Plan Remate</span>
+      <a href="#cuenta" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #1B1340; font-weight: 700; font-size: 16px">Cuenta</a>
+    </div>
+  </div>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 32px clamp(20px, 4vw, 40px) 96px; display: flex; flex-direction: column; gap: 28px">
+
+  <!-- MIGAS Y TITULO -->
+  <div class="alza-rise" style="display: flex; flex-direction: column; gap: 14px">
+    <nav aria-label="Migas de pan" style="font-size: 15px; color: #5B5478"><a href="#ejercicios" style="text-decoration: underline">Ejercicios</a> &nbsp;/&nbsp; Remate</nav>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.03em">Aproximación explosiva en tres pasos</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px">
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: #FF5A36; border: 2px solid #1B1340; font-size: 15px; font-weight: 700"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #1B1340"></span>Remate</span>
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-size: 15px; font-weight: 700">Dificultad media</span>
+      <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-size: 15px; font-weight: 700">15 min</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+    <!-- ESCENARIO ANIMADO -->
+    <section class="alza-rise" style="animation-delay: 0.1s; flex: 1.6 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 8px 8px 0 #1B1340; overflow: hidden">
+        <svg viewBox="0 0 720 400" role="img" aria-label="Animación del ejercicio: un jugador esquemático da tres pasos de aproximación, salta y golpea el balón sobre la red" style="width: 100%; height: auto; display: block">
+          <rect x="0" y="0" width="720" height="352" fill="#EFE9FF"></rect>
+          <rect x="0" y="352" width="720" height="48" fill="#FFC933"></rect>
+          <line x1="0" y1="352" x2="720" y2="352" stroke="#1B1340" stroke-width="3"></line>
+          <rect x="447" y="146" width="6" height="206" fill="#1B1340"></rect>
+          <rect x="439" y="140" width="22" height="12" rx="4" fill="#FFFFFF" stroke="#1B1340" stroke-width="2.5"></rect>
+
+          <ellipse cx="{{shX}}" cy="354" rx="{{shRx}}" ry="7" fill="#1B1340" opacity="{{shOp}}"></ellipse>
+
+          <g opacity="{{figOp}}" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <line x1="{{lUA_a}}" y1="{{lUA_b}}" x2="{{lUA_c}}" y2="{{lUA_d}}" stroke="#5B5478" stroke-width="9"></line>
+            <line x1="{{lLA_a}}" y1="{{lLA_b}}" x2="{{lLA_c}}" y2="{{lLA_d}}" stroke="#5B5478" stroke-width="8"></line>
+            <line x1="{{lT_a}}" y1="{{lT_b}}" x2="{{lT_c}}" y2="{{lT_d}}" stroke="#5B5478" stroke-width="10"></line>
+            <line x1="{{lS_a}}" y1="{{lS_b}}" x2="{{lS_c}}" y2="{{lS_d}}" stroke="#5B5478" stroke-width="9"></line>
+            <circle cx="{{lFx}}" cy="{{lFy}}" r="7" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle>
+
+            <line x1="{{tr_a}}" y1="{{tr_b}}" x2="{{tr_c}}" y2="{{tr_d}}" stroke="#1B1340" stroke-width="19"></line>
+            <line x1="{{tr_a}}" y1="{{tr_b}}" x2="{{tr_c}}" y2="{{tr_d}}" stroke="#FF5A36" stroke-width="13"></line>
+            <circle cx="{{hdX}}" cy="{{hdY}}" r="14" fill="#FFFFFF" stroke="#1B1340" stroke-width="3"></circle>
+
+            <line x1="{{rT_a}}" y1="{{rT_b}}" x2="{{rT_c}}" y2="{{rT_d}}" stroke="#1B1340" stroke-width="10"></line>
+            <line x1="{{rS_a}}" y1="{{rS_b}}" x2="{{rS_c}}" y2="{{rS_d}}" stroke="#1B1340" stroke-width="9"></line>
+            <circle cx="{{rFx}}" cy="{{rFy}}" r="7" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle>
+            <line x1="{{rUA_a}}" y1="{{rUA_b}}" x2="{{rUA_c}}" y2="{{rUA_d}}" stroke="#1B1340" stroke-width="9"></line>
+            <line x1="{{rLA_a}}" y1="{{rLA_b}}" x2="{{rLA_c}}" y2="{{rLA_d}}" stroke="#1B1340" stroke-width="8"></line>
+            <circle cx="{{rHx}}" cy="{{rHy}}" r="5.5" fill="#FFFFFF" stroke="#1B1340" stroke-width="2.5"></circle>
+          </g>
+
+          <g transform="translate({{bx}} {{by}}) rotate({{br}})">
+            <circle cx="0" cy="0" r="17" fill="#FFFFFF" stroke="#1B1340" stroke-width="3"></circle>
+            <path d="M-15 -7 C -6 2 6 2 12 -13" fill="none" stroke="#1B1340" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M15 -5 C 8 4 2 5 -2 16" fill="none" stroke="#1B1340" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M-12 11 C -4 5 6 7 14 12" fill="none" stroke="#FF5A36" stroke-width="2.5" stroke-linecap="round"></path>
+          </g>
+        </svg>
+
+        <!-- CONTROLES -->
+        <div style="padding: 20px clamp(16px, 2.4vw, 28px) 24px; border-top: 2px solid #1B1340; display: flex; flex-direction: column; gap: 14px">
+          <div style="height: 12px; border-radius: 999px; background: #EFE9FF; border: 2px solid #1B1340; overflow: hidden">
+            <div style="height: 100%; width: {{pct}}%; background: #6C3BFF; border-right: 2px solid #1B1340; box-sizing: border-box"></div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+            <button type="button" onClick="{{togglePlay}}" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; min-width: 132px; padding: 0 24px; border-radius: 999px; background: #6C3BFF; color: #FFFFFF; border: 2px solid #1B1340; box-shadow: 3px 3px 0 #1B1340; font-weight: 700; font-size: 17px">
+              <sc-if value="{{playing}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1.5" fill="#FFFFFF"></rect><rect x="14" y="4" width="5" height="16" rx="1.5" fill="#FFFFFF"></rect></svg>Pausa</sc-if>
+              <sc-if value="{{paused}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4 L20 12 L6 20 Z" fill="#FFFFFF"></path></svg>Reproducir</sc-if>
+            </button>
+            <div role="group" aria-label="Velocidad" style="display: inline-flex; gap: 6px; padding: 5px; border-radius: 999px; background: #FFF8EE; border: 2px solid #1B1340">
+              <sc-for list="{{speeds}}" as="s" hint-placeholder-count="2">
+                <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 2px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; font-weight: 700; font-size: 15px">{{s.label}}</button>
+              </sc-for>
+            </div>
+            <div style="flex: 1 1 200px; min-width: 0; display: flex; align-items: center; gap: 10px"><label for="tiempo" style="font-size: 14px; font-weight: 700; color: #5B5478">Fotograma</label><input id="tiempo" type="range" min="0" max="100" step="1" value="{{scrub}}" onChange="{{onScrub}}"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASOS Y DATOS -->
+    <aside style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+
+      <div class="alza-rise" style="animation-delay: 0.2s; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Paso a paso</h2>
+        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+          <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+            <li style="display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-radius: 16px; border: 2px solid {{s.bd}}; background: {{s.bg}}; transform: {{s.tf}}; transition: background 0.25s, transform 0.25s, border-color 0.25s">
+              <span style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: {{s.numBg}}; color: {{s.numFg}}; border: 2px solid #1B1340; font-weight: 800; font-size: 15px">{{s.n}}</span>
+              <span style="font-size: 17px; line-height: 1.35; font-weight: 500">{{s.text}}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </div>
+
+      <div class="alza-rise" style="animation-delay: 0.3s; display: flex; flex-wrap: wrap; gap: 12px">
+        <div style="flex: 1 1 90px; background: #FFC933; border: 2px solid #1B1340; border-radius: 20px; padding: 14px 16px"><div style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1">4</div><div style="font-size: 14px; font-weight: 700">series</div></div>
+        <div style="flex: 1 1 90px; background: #18D4C0; border: 2px solid #1B1340; border-radius: 20px; padding: 14px 16px"><div style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1">6</div><div style="font-size: 14px; font-weight: 700">repeticiones</div></div>
+        <div style="flex: 1 1 90px; background: #FF5A36; border: 2px solid #1B1340; border-radius: 20px; padding: 14px 16px"><div style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1">90 s</div><div style="font-size: 14px; font-weight: 700">de descanso</div></div>
+      </div>
+
+      <div class="alza-rise" style="animation-delay: 0.4s; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Errores comunes</h2>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 17px; line-height: 1.45">
+          <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 999px; background: #FF5A36; border: 1.5px solid #1B1340"></span>Pasos demasiado cortos o con pausas entre ellos.</li>
+          <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 999px; background: #FF5A36; border: 1.5px solid #1B1340"></span>Brazos que no se llevan atrás antes del salto.</li>
+          <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 999px; background: #FF5A36; border: 1.5px solid #1B1340"></span>Frenar la carrera en vez de convertirla en salto.</li>
+        </ul>
+        <p style="margin: 0; padding: 12px 14px; border-radius: 16px; background: #FFF8EE; border: 2px solid #1B1340; font-size: 15px; line-height: 1.5; color: #5B5478">Calienta antes de saltar. Si notas dolor, para y consulta a tu entrenador.</p>
+      </div>
+
+      <div class="alza-rise" style="animation-delay: 0.5s; display: flex; flex-wrap: wrap; gap: 12px">
+        <button type="button" onClick="{{toggleDone}}" aria-pressed="{{done}}" style="flex: 1 1 200px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 24px; border-radius: 999px; background: {{doneBg}}; color: #1B1340; border: 2px solid #1B1340; box-shadow: 4px 4px 0 #1B1340; font-weight: 700; font-size: 18px; transition: background 0.25s">
+          <sc-if value="{{done}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 L10 17.5 L19 7" fill="none" stroke="#1B1340" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Hecho hoy</sc-if>
+          <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">Marcar como hecho</sc-if>
+        </button>
+        <a href="#siguiente" style="flex: 1 1 140px; display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 24px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-weight: 700; font-size: 18px">Siguiente</a>
+      </div>
+    </aside>
+  </div>
+</main>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: 0, playing: true, speed: 1, done: false };
+    this.raf = 0;
+    this.last = 0;
+    this.DUR = 5200;
+  }
+
+  componentDidMount() {
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { this.setState({ t: 0.82, playing: false }); return; }
+    const tick = (now) => {
+      if (this.last && this.state.playing) {
+        const dt = Math.min(60, now - this.last);
+        let t = this.state.t + (dt * this.state.speed) / this.DUR;
+        if (t >= 1) t -= 1;
+        this.setState({ t });
+      }
+      this.last = now;
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const t = st.t;
+    const FLOOR = 352;
+    const rad = (a) => a * Math.PI / 180;
+    const smooth = (x) => x * x * (3 - 2 * x);
+    const lerp = (a, b, k) => a + (b - a) * k;
+
+    // [x, aire, torso, brazoIzqSup, brazoIzqInf, brazoDerSup, brazoDerInf, musloIzq, piernaIzq, musloDer, piernaDer]
+    const K = [
+      { t: 0.00, p: [110, 0, 4, 8, 12, -8, 6, 4, 0, -4, 0] },
+      { t: 0.10, p: [125, 0, 6, 12, 16, -12, 8, 6, 0, -6, 0] },
+      { t: 0.22, p: [190, 0, 9, 36, 50, -32, -22, 38, 14, -22, -32] },
+      { t: 0.38, p: [255, 0, 14, -42, -36, -56, -46, -24, -34, 42, 20] },
+      { t: 0.52, p: [298, 0, 22, -64, -52, -62, -50, 44, -14, 30, -20] },
+      { t: 0.62, p: [322, 28, 6, 150, 160, 140, 150, 8, 4, 4, 2] },
+      { t: 0.74, p: [342, 70, -6, 95, 82, 125, 172, -15, -45, -5, -30] },
+      { t: 0.82, p: [350, 70, 10, 38, 30, 172, 176, -10, -36, 0, -20] },
+      { t: 0.92, p: [360, 20, 8, 22, 12, 62, 32, 10, 0, 14, 4] },
+      { t: 1.00, p: [366, 0, 14, 30, 26, 26, 20, 40, -10, 34, -12] }
+    ];
+    const seg = (frames, tt, ease) => {
+      let i = 0;
+      while (i < frames.length - 2 && tt > frames[i + 1].t) i++;
+      const a = frames[i], b = frames[i + 1];
+      let k = (tt - a.t) / (b.t - a.t);
+      k = Math.max(0, Math.min(1, k));
+      if (ease) k = smooth(k);
+      return a.p.map((v, j) => lerp(v, b.p[j], k));
+    };
+
+    const p = seg(K, t, true);
+    const [hx, air, tor, lAU, lAL, rAU, rAL, lTh, lSh, rTh, rSh] = p;
+    const dep = (th, sh) => 46 * Math.cos(rad(th)) + 46 * Math.cos(rad(sh));
+    const hy = FLOOR - Math.max(dep(lTh, lSh), dep(rTh, rSh)) - air;
+    const limb = (x, y, a, len) => [x + Math.sin(rad(a)) * len, y + Math.cos(rad(a)) * len];
+    const f1 = (n) => n.toFixed(1);
+
+    const sx = hx + Math.sin(rad(tor)) * 66;
+    const sy = hy - Math.cos(rad(tor)) * 66;
+    const hdX = sx + Math.sin(rad(tor)) * 24;
+    const hdY = sy - Math.cos(rad(tor)) * 24;
+
+    const out = {};
+    const put = (name, x1, y1, x2, y2) => {
+      out[name + '_a'] = f1(x1); out[name + '_b'] = f1(y1); out[name + '_c'] = f1(x2); out[name + '_d'] = f1(y2);
+    };
+    const lE = limb(sx, sy, lAU, 36), lH = limb(lE[0], lE[1], lAL, 34);
+    const rE = limb(sx, sy, rAU, 36), rH = limb(rE[0], rE[1], rAL, 34);
+    const lK = limb(hx, hy, lTh, 46), lF = limb(lK[0], lK[1], lSh, 46);
+    const rK = limb(hx, hy, rTh, 46), rF = limb(rK[0], rK[1], rSh, 46);
+    put('lUA', sx, sy, lE[0], lE[1]); put('lLA', lE[0], lE[1], lH[0], lH[1]);
+    put('rUA', sx, sy, rE[0], rE[1]); put('rLA', rE[0], rE[1], rH[0], rH[1]);
+    put('lT', hx, hy, lK[0], lK[1]); put('lS', lK[0], lK[1], lF[0], lF[1]);
+    put('rT', hx, hy, rK[0], rK[1]); put('rS', rK[0], rK[1], rF[0], rF[1]);
+    put('tr', hx, hy, sx, sy);
+    out.hdX = f1(hdX); out.hdY = f1(hdY);
+    out.lFx = f1(lF[0]); out.lFy = f1(lF[1]); out.rFx = f1(rF[0]); out.rFy = f1(rF[1]);
+    out.rHx = f1(rH[0]); out.rHy = f1(rH[1]);
+
+    out.shX = f1(hx); out.shRx = f1(34 - air * 0.28); out.shOp = Math.max(0.06, 0.26 - air / 360).toFixed(2);
+    out.figOp = (t < 0.04 ? t / 0.04 : (t > 0.96 ? (1 - t) / 0.04 : 1)).toFixed(2);
+
+    const BK = [
+      { t: 0.00, p: [560, -30] },
+      { t: 0.50, p: [455, 34] },
+      { t: 0.74, p: [400, 52] },
+      { t: 0.82, p: [382, 56] },
+      { t: 1.00, p: [650, 335] }
+    ];
+    const bp = (t < 0.82) ? seg(BK, t, true) : seg(BK, t, false);
+    out.bx = f1(bp[0]); out.by = f1(bp[1]); out.br = f1(t * 540);
+
+    out.pct = Math.round(t * 100);
+    out.scrub = Math.round(t * 100);
+    out.playing = st.playing; out.paused = !st.playing;
+    out.togglePlay = () => this.setState({ playing: !st.playing });
+    out.onScrub = (e) => this.setState({ t: Number(e.target.value) / 100, playing: false });
+    out.speeds = [0.5, 1].map((s) => {
+      const on = st.speed === s;
+      return { label: s === 0.5 ? '0,5x' : '1x', pressed: on, bg: on ? '#1B1340' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1B1340', bd: '#1B1340', pick: () => this.setState({ speed: s }) };
+    });
+
+    const STEPS = [
+      { a: 0.10, b: 0.30, text: 'Paso largo y lento con la pierna contraria al brazo de golpeo.' },
+      { a: 0.30, b: 0.46, text: 'Paso rápido llevando los brazos hacia atrás.' },
+      { a: 0.46, b: 0.60, text: 'Cierra con los pies y flexiona las rodillas.' },
+      { a: 0.60, b: 0.86, text: 'Salta con los brazos arriba y golpea alto y delante.' },
+      { a: 0.86, b: 1.01, text: 'Aterriza flexionando para amortiguar.' }
+    ];
+    out.steps = STEPS.map((s, i) => {
+      const on = t >= s.a && t < s.b;
+      return {
+        n: i + 1, text: s.text,
+        bg: on ? '#FFC933' : '#FFF8EE', bd: on ? '#1B1340' : '#E7E1F7',
+        tf: on ? 'translateX(6px)' : 'translateX(0)',
+        numBg: on ? '#FFFFFF' : '#EFE9FF', numFg: '#1B1340'
+      };
+    });
+
+    out.done = st.done; out.notDone = !st.done;
+    out.doneBg = st.done ? '#18D4C0' : '#FFC933';
+    out.toggleDone = () => this.setState({ done: !st.done });
+    return out;
+  }
+}
+</script>
+</body>
+</html>

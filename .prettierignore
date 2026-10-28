@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+.next
+out
+playwright-report
+test-results
+supabase/.temp
+docs
+CLAUDE.md
+AGENTS.md

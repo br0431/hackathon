@@ -1,0 +1,1 @@
+-- Datos de ejemplo (ejercicios, entrenadores, huecos). Se rellena en los hitos 5 y 7.

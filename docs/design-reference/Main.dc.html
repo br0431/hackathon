@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Alza - Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+body { margin: 0; background: #FFF8EE; }
+a { color: inherit; text-decoration: none; }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+@keyframes alza-bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-22px); }
+  100% { transform: translateY(0); }
+}
+@keyframes alza-draw {
+  from { transform: scale(0.2); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.alza-ball { animation: alza-bounce 2.4s ease-in-out infinite; }
+.alza-radar { transform-origin: 200px 200px; animation: alza-draw 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+@media (prefers-reduced-motion: reduce) {
+  .alza-ball, .alza-radar { animation: none; }
+}
+</style>
+</helmet>
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #1B1340; background: #FFF8EE; width: 100%">
+
+<!-- NAV -->
+<nav style="max-width: 1200px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+  <a href="#inicio" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px">
+    <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="16.5" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle><path d="M12 23 L19 13 L26 23" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em">Alza</span>
+  </a>
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 17px; font-weight: 500">
+    <a href="#como-funciona" style="display: inline-flex; align-items: center; min-height: 44px">Cómo funciona</a>
+    <a href="#planes" style="display: inline-flex; align-items: center; min-height: 44px">Planes</a>
+    <a href="#faq" style="display: inline-flex; align-items: center; min-height: 44px">Preguntas</a>
+    <a href="#entrar" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 999px; border: 2px solid #1B1340; font-weight: 700">Entrar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" style="position: relative; overflow: hidden">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 32px clamp(20px, 4vw, 40px) 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px 56px">
+    <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 28px; align-items: flex-start">
+      <span style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-size: 15px; font-weight: 700">
+        <span style="width: 10px; height: 10px; border-radius: 999px; background: #18D4C0; border: 1.5px solid #1B1340"></span>
+        Voleibol · todos los niveles
+      </span>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(42px, 6.4vw, 78px); line-height: 1.04; letter-spacing: -0.03em">Descubre tu perfil de jugador. <span style="background: #FFC933; padding: 0 0.14em; border-radius: 0.16em; -webkit-box-decoration-break: clone; box-decoration-break: clone">Entrena lo que te falta.</span></h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.55; color: #5B5478; max-width: 540px">Cuéntanos tu altura, tu peso, tu salto vertical, tu posición y cómo juegas cada habilidad. Te devolvemos un radar con tus puntos fuertes, tus puntos débiles y por dónde empezar.</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+        <a href="#empezar" style="display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 32px; border-radius: 999px; background: #6C3BFF; color: #FFFFFF; font-weight: 700; font-size: 18px; border: 2px solid #1B1340; box-shadow: 5px 5px 0 #1B1340">Descubre tu perfil en 3 minutos</a>
+        <a href="#planes" style="display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; font-weight: 700; font-size: 18px; border: 2px solid #1B1340">Ver los planes</a>
+      </div>
+      <p style="margin: 0; font-size: 15px; color: #5B5478">Empieza gratis, sin tarjeta.</p>
+    </div>
+
+    <div style="flex: 1 1 460px; min-width: 0; position: relative; padding: 8px 8px 0 0">
+      <div aria-hidden="true" style="position: absolute; left: -56px; bottom: -56px; width: 260px; height: 260px; border-radius: 999px; background: #FFC933; border: 2px solid #1B1340"></div>
+      <div class="alza-ball" aria-hidden="true" style="position: absolute; top: -44px; right: -6px; z-index: 2; width: 92px; height: 92px">
+        <svg width="92" height="92" viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="#FFFFFF" stroke="#1B1340" stroke-width="3"></circle><path d="M6 34 C 22 46 42 44 52 5" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round"></path><path d="M74 34 C 60 44 44 44 38 76" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round"></path><path d="M13 65 C 30 53 52 55 71 65" fill="none" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"></path></svg>
+      </div>
+      <div style="position: relative; z-index: 1; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 8px 8px 0 #1B1340; padding: 24px clamp(16px, 3vw, 28px) 28px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+          <span style="font-size: 14px; font-weight: 700; color: #5B5478; letter-spacing: 0.06em; text-transform: uppercase">Perfil de ejemplo</span>
+          <span style="display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: #FF5A36; border: 2px solid #1B1340; font-size: 15px; font-weight: 700">Rematador explosivo</span>
+        </div>
+
+        <svg viewBox="-40 0 480 372" role="img" aria-label="Radar de ejemplo con siete ejes: remate y salto fuertes, recepción y defensa débiles" style="width: 100%; height: auto; display: block">
+          <g fill="none" stroke="#D9D3F5" stroke-width="1.5">
+            <polygon points="200,70 301.63,118.94 326.74,228.93 256.41,317.13 143.59,317.13 73.26,228.93 98.37,118.94"></polygon>
+            <polygon points="200,102.5 276.22,139.21 295.06,221.7 242.31,287.85 157.69,287.85 104.94,221.7 123.78,139.21"></polygon>
+            <polygon points="200,135 250.82,159.47 263.37,214.46 228.21,258.57 171.79,258.57 136.63,214.46 149.18,159.47"></polygon>
+            <polygon points="200,167.5 225.41,179.74 231.69,207.23 214.1,229.28 185.9,229.28 168.31,207.23 174.59,179.74"></polygon>
+            <line x1="200" y1="200" x2="200" y2="70"></line>
+            <line x1="200" y1="200" x2="301.63" y2="118.94"></line>
+            <line x1="200" y1="200" x2="326.74" y2="228.93"></line>
+            <line x1="200" y1="200" x2="256.41" y2="317.13"></line>
+            <line x1="200" y1="200" x2="143.59" y2="317.13"></line>
+            <line x1="200" y1="200" x2="73.26" y2="228.93"></line>
+            <line x1="200" y1="200" x2="98.37" y2="118.94"></line>
+          </g>
+          <g class="alza-radar">
+            <polygon points="200,70 276.22,139.21 295.06,221.7 214.1,229.28 185.9,229.28 136.63,214.46 118.7,135.2" fill="#6C3BFF" fill-opacity="0.22" stroke="#6C3BFF" stroke-width="3.5" stroke-linejoin="round"></polygon>
+            <circle cx="200" cy="70" r="9" fill="#FF5A36" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="276.22" cy="139.21" r="9" fill="#2F7BFF" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="295.06" cy="221.7" r="9" fill="#FFC933" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="214.1" cy="229.28" r="9" fill="#35C76B" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="185.9" cy="229.28" r="9" fill="#18D4C0" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="136.63" cy="214.46" r="9" fill="#6C3BFF" stroke="#1B1340" stroke-width="2.5"></circle>
+            <circle cx="118.7" cy="135.2" r="9" fill="#E83E8C" stroke="#1B1340" stroke-width="2.5"></circle>
+          </g>
+          <g font-family="DM Sans, system-ui, sans-serif" font-size="17" font-weight="700" fill="#1B1340">
+            <text x="200" y="48" text-anchor="middle">Remate</text>
+            <text x="324" y="110" text-anchor="start">Bloqueo</text>
+            <text x="352" y="240" text-anchor="start">Saque</text>
+            <text x="266" y="354" text-anchor="middle">Defensa</text>
+            <text x="134" y="354" text-anchor="middle">Recepción</text>
+            <text x="48" y="240" text-anchor="end">Colocación</text>
+            <text x="76" y="110" text-anchor="end">Salto</text>
+          </g>
+        </svg>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: #FFF8EE; border: 2px solid #1B1340; font-size: 14px; font-weight: 700"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FF5A36; border: 1.5px solid #1B1340"></span>Arma principal: remate</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: #FFF8EE; border: 2px solid #1B1340; font-size: 14px; font-weight: 700"><span style="width: 12px; height: 12px; border-radius: 999px; background: #18D4C0; border: 1.5px solid #1B1340"></span>A reforzar: recepción y defensa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA DE EJES -->
+<section aria-label="Los siete ejes del perfil" style="background: #1B1340; color: #FFFFFF">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 32px clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px">
+    <p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.01em">Siete ejes, un solo perfil</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; flex: 1 1 400px">
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FFC933; border: 1.5px solid #1B1340"></span>Saque</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #18D4C0; border: 1.5px solid #1B1340"></span>Recepción</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #6C3BFF; border: 1.5px solid #1B1340"></span>Colocación</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #FF5A36; border: 1.5px solid #1B1340"></span>Remate</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #2F7BFF; border: 1.5px solid #1B1340"></span>Bloqueo</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #35C76B; border: 1.5px solid #1B1340"></span>Defensa</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1B1340; font-weight: 700; font-size: 16px"><span style="width: 12px; height: 12px; border-radius: 999px; background: #E83E8C; border: 1.5px solid #1B1340"></span>Salto</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" style="max-width: 1200px; margin: 0 auto; padding: 112px clamp(20px, 4vw, 40px) 96px; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+    <span style="font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6C3BFF">Cómo funciona</span>
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.06; letter-spacing: -0.025em">Tres minutos para saber por dónde empezar</h2>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 28px">
+    <div style="flex: 1 1 300px; min-width: 0; background: #FFC933; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; background: #1B1340; color: #FFFFFF; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 24px">1</span>
+      <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15; letter-spacing: -0.015em">Cuéntanos cómo eres</h3>
+      <p style="margin: 0; font-size: 18px; line-height: 1.55">Altura, peso, salto vertical y tu posición. Después, una nota del 1 al 5 para cada una de tus seis habilidades.</p>
+    </div>
+    <div style="flex: 1 1 300px; min-width: 0; background: #18D4C0; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; background: #1B1340; color: #FFFFFF; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 24px">2</span>
+      <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15; letter-spacing: -0.015em">Mira tu perfil</h3>
+      <p style="margin: 0; font-size: 18px; line-height: 1.55">Un radar con tus puntos fuertes, tus áreas a reforzar y un perfil de jugador que te pone nombre.</p>
+    </div>
+    <div style="flex: 1 1 300px; min-width: 0; background: #FF5A36; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; background: #1B1340; color: #FFFFFF; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 24px">3</span>
+      <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15; letter-spacing: -0.015em">Entrena lo que importa</h3>
+      <p style="margin: 0; font-size: 18px; line-height: 1.55">Elige tu rumbo y recibe la recomendación. Con un plan de pago, ejercicios animados y un plan semanal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RUMBO -->
+<section style="background: #EFE9FF; border-top: 2px solid #1B1340; border-bottom: 2px solid #1B1340">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 48px 56px; align-items: flex-start">
+    <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6C3BFF">Tu objetivo</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.06; letter-spacing: -0.025em">Tú eliges el rumbo</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #5B5478">Con los mismos datos, la recomendación cambia según lo que quieras conseguir.</p>
+    </div>
+    <div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+      <div style="background: #FFFFFF; border: 2px solid #1B1340; border-radius: 24px; padding: 24px 28px; display: flex; align-items: center; gap: 20px">
+        <span style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #FF5A36; border: 2px solid #1B1340"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 V19 M5 12 H19" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 24px">Reforzar lo débil</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5B5478">Tu plan prioriza las dos o tres áreas donde más margen tienes.</p>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border: 2px solid #1B1340; border-radius: 24px; padding: 24px 28px; display: flex; align-items: center; gap: 20px">
+        <span style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #FFC933; border: 2px solid #1B1340"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,3 14.9,9 21,9.8 16.5,14.2 17.7,21 12,17.7 6.3,21 7.5,14.2 3,9.8 9.1,9" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linejoin="round"></polygon></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 24px">Potenciar lo fuerte</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5B5478">Convierte tu mejor habilidad en tu arma principal y llévala a otro nivel.</p>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border: 2px solid #1B1340; border-radius: 24px; padding: 24px 28px; display: flex; align-items: center; gap: 20px">
+        <span style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #18D4C0; border: 2px solid #1B1340"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9 H19 M5 15 H19" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round"></path></svg></span>
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 24px">Equilibrado</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5B5478">Mezcla las dos cosas: mejora lo que te frena sin descuidar lo que te distingue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="planes" style="max-width: 1200px; margin: 0 auto; padding: 112px clamp(20px, 4vw, 40px) 96px; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+    <span style="font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6C3BFF">Planes</span>
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.06; letter-spacing: -0.025em">Tres planes. Empieza gratis.</h2>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch">
+    <!-- Saque -->
+    <div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.02em">Saque</h3>
+        <p style="margin: 0; font-size: 17px; color: #5B5478">Para descubrir tu perfil.</p>
+      </div>
+      <p style="margin: 0; display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">0 €</span></p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.4; flex-grow: 1">
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#18D4C0" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Diagnóstico y radar de habilidades</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#18D4C0" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Fortalezas, áreas a reforzar y perfil de jugador</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#18D4C0" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Consejos básicos por habilidad</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#18D4C0" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Vista previa de ejercicios</li>
+      </ul>
+      <a href="#empezar" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; border: 2px solid #1B1340; font-weight: 700; font-size: 17px">Empezar gratis</a>
+    </div>
+
+    <!-- Remate -->
+    <div style="flex: 1 1 300px; min-width: 0; background: #6C3BFF; color: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 24px; position: relative">
+      <span style="position: absolute; top: -18px; right: 24px; display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: #FFC933; color: #1B1340; border: 2px solid #1B1340; font-size: 14px; font-weight: 700">Más popular</span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.02em">Remate</h3>
+        <p style="margin: 0; font-size: 17px; color: #E9E2FF">Para entrenar con ejercicios y plan.</p>
+      </div>
+      <p style="margin: 0; display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">10 €</span><span style="font-size: 18px; font-weight: 500">al mes</span></p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.4; flex-grow: 1">
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FFC933" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Todo lo de Saque</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FFC933" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Biblioteca de ejercicios con animaciones</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FFC933" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Plan semanal personalizado</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FFC933" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Historial y comparativa de tus evaluaciones</li>
+      </ul>
+      <a href="#empezar" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #FFC933; color: #1B1340; border: 2px solid #1B1340; font-weight: 700; font-size: 17px; box-shadow: 4px 4px 0 #1B1340">Elegir Remate</a>
+    </div>
+
+    <!-- Ace -->
+    <div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 2px solid #1B1340; border-radius: 28px; box-shadow: 6px 6px 0 #1B1340; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.02em">Ace</h3>
+        <p style="margin: 0; font-size: 17px; color: #5B5478">Para competir con profesionales.</p>
+      </div>
+      <p style="margin: 0; display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">30 €</span><span style="font-size: 18px; font-weight: 500; color: #5B5478">al mes</span></p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.4; flex-grow: 1">
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FF5A36" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Todo lo de Remate</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FF5A36" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Plan avanzado de 4 a 8 semanas con ajuste semanal</li>
+        <li style="display: flex; gap: 12px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="11" fill="#FF5A36" stroke="#1B1340" stroke-width="2"></circle><path d="M7 12.5 L10.5 16 L17 8.5" fill="none" stroke="#1B1340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>2 sesiones online de 45 minutos al mes con profesionales</li>
+      </ul>
+      <a href="#empezar" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #1B1340; color: #FFFFFF; border: 2px solid #1B1340; font-weight: 700; font-size: 17px">Elegir Ace</a>
+    </div>
+  </div>
+  <p style="margin: 0; font-size: 15px; color: #5B5478">Versión de demostración: los pagos son simulados y no se realiza ningún cobro.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background: #FFFFFF; border-top: 2px solid #1B1340; border-bottom: 2px solid #1B1340">
+  <div style="max-width: 920px; margin: 0 auto; padding: 96px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 40px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.06; letter-spacing: -0.025em">Preguntas frecuentes</h2>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <details style="background: #FFF8EE; border: 2px solid #1B1340; border-radius: 20px; padding: 20px 24px" open>
+        <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px">¿Tengo que tener mucho nivel?<span aria-hidden="true" style="flex: none; font-size: 28px; line-height: 1">+</span></summary>
+        <p style="margin: 12px 0 0; font-size: 18px; line-height: 1.55; color: #5B5478">No. Alza es para todos los niveles, desde quien está empezando hasta quien compite en liga. La recomendación se adapta a tus datos y a tu posición.</p>
+      </details>
+      <details style="background: #FFF8EE; border: 2px solid #1B1340; border-radius: 20px; padding: 20px 24px">
+        <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px">¿Qué datos me pedís?<span aria-hidden="true" style="flex: none; font-size: 28px; line-height: 1">+</span></summary>
+        <p style="margin: 12px 0 0; font-size: 18px; line-height: 1.55; color: #5B5478">Tu edad, tu altura, tu peso, tu salto vertical, tu posición y una nota del 1 al 5 en saque, recepción, colocación, remate, bloqueo y defensa. Rellenarlo lleva unos tres minutos.</p>
+      </details>
+      <details style="background: #FFF8EE; border: 2px solid #1B1340; border-radius: 20px; padding: 20px 24px">
+        <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px">¿Puedo cambiar de plan o cancelar?<span aria-hidden="true" style="flex: none; font-size: 28px; line-height: 1">+</span></summary>
+        <p style="margin: 12px 0 0; font-size: 18px; line-height: 1.55; color: #5B5478">Sí, desde tu cuenta. Si cancelas, conservas tu plan hasta el final del periodo y después vuelves a Saque sin perder tus datos.</p>
+      </details>
+      <details style="background: #FFF8EE; border: 2px solid #1B1340; border-radius: 20px; padding: 20px 24px">
+        <summary style="display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px">¿Sustituye a mi entrenador?<span aria-hidden="true" style="flex: none; font-size: 28px; line-height: 1">+</span></summary>
+        <p style="margin: 12px 0 0; font-size: 18px; line-height: 1.55; color: #5B5478">No. Las recomendaciones te orientan, pero no sustituyen a un entrenador ni a un profesional sanitario.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="empezar" style="background: #6C3BFF; color: #FFFFFF; position: relative; overflow: hidden">
+  <div aria-hidden="true" style="position: absolute; right: -70px; top: -70px; width: 240px; height: 240px; border-radius: 999px; background: #FF5A36; border: 2px solid #1B1340"></div>
+  <div aria-hidden="true" style="position: absolute; left: -50px; bottom: -80px; width: 200px; height: 200px; border-radius: 999px; background: #FFC933; border: 2px solid #1B1340"></div>
+  <div style="position: relative; max-width: 920px; margin: 0 auto; padding: 112px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: clamp(36px, 5.2vw, 64px); line-height: 1.05; letter-spacing: -0.028em">Tu perfil de jugador está a tres minutos</h2>
+    <p style="margin: 0; font-size: 20px; line-height: 1.55; color: #F1ECFF; max-width: 560px">Crea tu cuenta con tu email, rellena el diagnóstico y descubre en qué eres fuerte y qué te falta.</p>
+    <a href="#registro" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 36px; border-radius: 999px; background: #FFC933; color: #1B1340; border: 2px solid #1B1340; box-shadow: 5px 5px 0 #1B1340; font-weight: 700; font-size: 19px">Empezar el diagnóstico</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #1B1340; color: #FFFFFF">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 48px clamp(20px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start; justify-content: space-between">
+    <div style="display: flex; flex-direction: column; gap: 12px; max-width: 420px">
+      <span style="display: inline-flex; align-items: center; gap: 10px">
+        <svg width="34" height="34" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="16.5" fill="#FFC933" stroke="#FFFFFF" stroke-width="2.5"></circle><path d="M12 23 L19 13 L26 23" fill="none" stroke="#1B1340" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 800; font-size: 26px">Alza</span>
+      </span>
+      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #D9D3F5">Las recomendaciones de Alza no sustituyen a un entrenador ni a un profesional sanitario.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 16px">
+      <a href="#privacidad" style="display: inline-flex; align-items: center; min-height: 44px">Privacidad</a>
+      <a href="#terminos" style="display: inline-flex; align-items: center; min-height: 44px">Términos</a>
+      <a href="#contacto" style="display: inline-flex; align-items: center; min-height: 44px">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":3700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
