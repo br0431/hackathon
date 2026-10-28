@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { DEMO_PAYMENTS_NOTICE, PLANS } from "@/config/plans";
+import { DEMO_PAYMENTS_NOTICE, PLANS, STRIPE_TEST_PAYMENT_LINKS } from "@/config/plans";
 
 export function PlanCards() {
   return (
@@ -39,9 +39,13 @@ export function PlanCards() {
               <Button asChild variant="secondary">
                 <Link href="/diagnostico">Empezar gratis</Link>
               </Button>
+            ) : STRIPE_TEST_PAYMENT_LINKS[plan.id] ? (
+              <Button asChild variant={plan.highlighted ? "default" : "secondary"}>
+                <a href={STRIPE_TEST_PAYMENT_LINKS[plan.id]}>Elegir {plan.name} · pagar con Stripe (prueba)</a>
+              </Button>
             ) : (
               <p className="rounded-full border-2 border-dashed border-ink px-4 py-2.5 text-center text-sm font-bold">
-                Checkout simulado: llega en la próxima versión
+                Pago con Stripe: próximamente
               </p>
             )}
           </li>

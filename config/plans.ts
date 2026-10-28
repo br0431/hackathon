@@ -42,4 +42,14 @@ export const PLANS = [
 
 export type PlanId = (typeof PLANS)[number]["id"];
 
-export const DEMO_PAYMENTS_NOTICE = "Versión de demostración: los pagos son simulados y no se realiza ningún cobro.";
+/**
+ * Payment Links de Stripe en modo test (enlaces públicos, no son secretos).
+ * El pago todavía no activa el plan dentro de la app: falta el webhook.
+ */
+export const STRIPE_TEST_PAYMENT_LINKS: Partial<Record<PlanId, string>> = {
+  remate: "https://buy.stripe.com/test_28E28jbBM0jae8N3jsbV600",
+  ace: "https://buy.stripe.com/test_28EeV58pAaXOfcRcU2bV601",
+};
+
+export const DEMO_PAYMENTS_NOTICE =
+  "Versión de demostración: Stripe en modo de prueba, no se realiza ningún cobro. Tarjeta de prueba: 4242 4242 4242 4242.";
